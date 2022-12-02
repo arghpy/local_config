@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+
+
+SOURCES=$(xrandr | grep -w "connected" | awk '{print $1}')
+
+EDP1=$(echo $SOURCES | grep -i "edp")
+
+HDMI=$(echo $SOURCES | grep -i "hdmi")
+
+if [ -z $HDMI ]; then
+	xrandr --output $EDP1 --auto
+else
+	xrandr --output eDP-1 --off --output HDMI-1-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1-0 --off --output DP-1-1 --off
+
+fi
+
+
