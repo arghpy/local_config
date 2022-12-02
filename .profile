@@ -56,5 +56,5 @@ fi
 export TERMINAL="st"
 
 ## Adding to path
-export PATH=$PATH:/home/arghpy/.local/bin:/home/arghpy/.local/bin/dwm_scripts:/home/arghpy/.local/bin/dwmblocks_scripts
+export PATH=$PATH:$HOME/.local/bin:$HOME/.local/bin/dwm_scripts:$HOME/.local/bin/dwmblocks_scripts
 
