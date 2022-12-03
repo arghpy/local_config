@@ -37,10 +37,10 @@ static const char *colors[][3]      = {
 	/*[SchemeNorm] = { col_gray3, col_gray1, col_gray2 }, ORIGINAL */
 	[SchemeNorm] = { col_white2, col_BlackGreen, col_gray2 },
 	/*[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  }, ORIGINAL */
-	[SchemeSel]  = { col_black, col_cyan2,  col_cyan  },
+	[SchemeSel]  = { col_white2, col_BlackGreen,  col_cyan  },
 
-        [SchemeStatus]  = { col_gray3, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
-        [SchemeTagsSel]  = { col_gray4, col_cyan,  "#000000"  }, // Tagbar left selected {text,background,not used but cannotbe empty}
+        [SchemeStatus]  = { col_white2, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+        [SchemeTagsSel]  = { col_black, col_cyan2,  "#000000"  }, // Tagbar left selected {text,background,not used but cannotbe empty}
         [SchemeTagsNorm]  = { col_gray3, col_gray1,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
         [SchemeInfoSel]  = { col_gray4, col_cyan,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
         [SchemeInfoNorm]  = { col_gray3, col_gray1,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
@@ -103,8 +103,10 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_w,      spawn,          {.v = lynx } },
 	{ MODKEY,			XK_o,      spawn,          {.v = lf } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },
-	{ MODKEY,			XK_minus,  spawn,          SHCMD("pamixer -d 5; kill -47 $(pidof dwmblocks)") },
-	{ MODKEY,			XK_equal,  spawn,          SHCMD("pamixer -i 5; kill -47 $(pidof dwmblocks)") },
+	{ MODKEY,			XK_minus,  spawn,          SHCMD( "pamixer -d 5; kill -47 $(pidof dwmblocks)" ) },
+	{ MODKEY,			XK_equal,  spawn,          SHCMD( "pamixer -i 5; kill -47 $(pidof dwmblocks)" ) },
+	{ MODKEY|ShiftMask,		XK_minus,  spawn,          SHCMD( "brightnessctl set 5%- >/dev/null ; kill -51 $(pidof dwmblocks)" ) },
+	{ MODKEY|ShiftMask,		XK_equal,  spawn,          SHCMD( "brightnessctl set 5%+ >/dev/null ; kill -51 $(pidof dwmblocks)" ) },
 	{ MODKEY,                       XK_f,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -130,7 +132,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	/*{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },*/
 	/*{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },*/
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+	/*{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },*/
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
