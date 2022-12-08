@@ -91,6 +91,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_Blac
 static const char *termcmd[]  = { "st", NULL };
 static const char *firefox[]  = { "/usr/bin/firefox", NULL};
 static const char *lynx[]  = { "/home/arghpy/.local/bin/dwm_scripts/start_lynx", NULL};
+static const char *thunar[]  = { "/usr/bin/thunar", NULL};
 static const char *lf[]  = { "/home/arghpy/.local/bin/dwm_scripts/start_lf", NULL};
 static const char *slock[]  = { "slock", NULL};
 
@@ -101,6 +102,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,			XK_w,      spawn,          {.v = firefox } },
 	{ MODKEY|ShiftMask,		XK_w,      spawn,          {.v = lynx } },
+	{ MODKEY|ShiftMask,		XK_o,      spawn,          {.v = thunar } },
 	{ MODKEY,			XK_o,      spawn,          {.v = lf } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },
 	{ MODKEY,			XK_minus,  spawn,          SHCMD( "pamixer -d 5; kill -47 $(pidof dwmblocks)" ) },
@@ -122,7 +124,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	/*{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },*/
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
+	/*{ MODKEY,                       XK_space,  setlayout,      {0} },*/
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
