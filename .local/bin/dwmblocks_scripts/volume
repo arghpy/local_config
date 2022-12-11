@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VOLUME=$(pamixer --get-volume)
+VOLUME=$(echo "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $NF}') * 100" | bc -l | awk -F '.' '{print $1}')
 
 
 HIGH=""
@@ -8,15 +8,15 @@ LOW=""
 OFF=""
 
 
-if [[ $VOLUME > 60 ]]; then
-        echo "$HIGH $VOLUME%"
-elif (( $VOLUME <= 60 && $VOLUME > 10 )); then
-        echo "$LOW $VOLUME%"
-elif (( $VOLUME <= 10 )); then
-        echo "$OFF $VOLUME%"
+if [[ $VOLUME -gt 60 ]]; then
+        printf "%s %s" "$HIGH" "$VOLUME%"
+elif [[ $VOLUME -le 60 && $VOLUME -gt 10 ]]; then
+        printf "%s %s" "$LOW" "$VOLUME%"
+elif [[ $VOLUME -le 10 ]]; then
+        printf "%s %s" "$OFF" "$VOLUME%"
 fi
 
 
 case $BUTTON in
-	6) st -e vim $(which $0);;
+	6) st -e vim "$(which "$0")";;
 esac

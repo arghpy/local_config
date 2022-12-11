@@ -2,17 +2,41 @@
 
 # Icons
 
-ICON=""
+WIFI_ICON=""
+ETH_ICON=""
 
 # Variables
 
-SSID=$(nmcli -t | grep "connected to" | awk '{print $NF}')
+NETWORKS=$(nmcli -t | grep "connected to" | awk -F ':' '{print $1}')
+
+ETH=$(echo $NETWORKS | grep 'e')
+
+WIFI=$(echo $NETWORKS | grep 'w')
+
+if [[ -n $ETH ]]; then
+	echo "$ETH_ICON"
+elif [[ -n $WIFI ]]; then
+	SSID=$(nmcli -t | grep "connected to" | grep $WIFI | awk '{print $NF}')
+	echo "$WIFI_ICON $SSID"
+else
+	echo "$WIFI_ICON"
+fi
 
 
 echo "$ICON $SSID"
 
 # Implement the click actions
 case $BUTTON in
+	1) 
+		if [[ -n $ETH ]]; then
+			dunstify "$ETH_ICON connected through ethernet."
+		elif [[ -n $WIFI ]]; then
+			dunstify "$WIFI_ICON connected to $SSID"
+		else
+			dunstify "No connection"
+		fi
+
+		;;
 	3) st -e nmtui ;;
         6) st -e vim $(which $0) ;;
 esac
