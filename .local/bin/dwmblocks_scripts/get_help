@@ -15,7 +15,7 @@ printf "%s " "$ICON"
 # Implement the click actions
 case $BUTTON in
 	1) dunstify "$ICON Press right click for help." ;;
-	3) zathura "$HOME/.config/help.pdf" ;;
+	3) zathura "$HOME/.config/user_guide.pdf" ;;
         6) st -e vim $(which $0) ;;
 esac
 
