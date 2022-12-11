@@ -18,7 +18,7 @@
 
 switch_display
 
-dwmblocks &
+dwmblocks 2>&1 >/dev/null &
 
 dunst &
 
